@@ -26,6 +26,13 @@ class Checks:
         self.rows.append({"step": step, "name": name, "ok": None, "detail": why})
         C.log(f"  [SKIP] {step} {name} — {why}")
 
+    def waive(self, step, name, why):
+        """跟 skip 不同：這不是「還沒做完」，是**刻意決定不做**且已在回覆信中
+        說明。不計入 failed/skipped，不會擋住驗收 gate，但仍完整記錄在
+        acceptance_report.md 裡，避免變成靜默消失、日後被誤認為疏漏。"""
+        self.rows.append({"step": step, "name": name, "ok": "waived", "detail": why})
+        C.log(f"  [WAIVED] {step} {name} — {why}")
+
     @property
     def failed(self):
         return [r for r in self.rows if r["ok"] is False]
@@ -33,6 +40,10 @@ class Checks:
     @property
     def skipped(self):
         return [r for r in self.rows if r["ok"] is None]
+
+    @property
+    def waived(self):
+        return [r for r in self.rows if r["ok"] == "waived"]
 
 
 def main():
@@ -122,7 +133,12 @@ def main():
                     d.get("n_rated", 0) >= 200 and d.get("n_raters") == 2)
             k.check("02", "已回報 Cohen's kappa", d.get("kappa") is not None)
         else:
-            k.skip("02", "label_preservation.json", "人工稽核尚未回填")
+            # 2026-09-14 決定：EDC15 / R2C11 要求的人工 label-preservation
+            # 稽核因內部死線時間不足，主動決定不做，已在回覆信中如實說明並
+            # 承認為本次修訂的限制（非疏漏）。故意 waive 而非 skip：
+            # 不擋驗收 gate（03-08 的其餘數字與此無關），但仍完整留下紀錄。
+            k.waive("02", "label_preservation.json（人工稽核）",
+                    "EDC15/R2C11：時間不足，主動決定不做，已在回覆信中揭露為限制")
 
     # ---------------- 03 prompt 選擇 ----------------
     C.log("\n== 03 select prompt ==")
@@ -165,9 +181,9 @@ def main():
         id_sets = [set(v["item_id"]) for v in frames.values()]
         k.check("04", "五條件 item_id 集合完全相同（paired test 前提）",
                 all(s == id_sets[0] for s in id_sets))
-        k.check("04", "100% 記錄 raw_response",
-                all(v["raw_response"].notna().all() |
-                    v["error"].notna() for v in frames.values()))
+        k.check("04", "100% 記錄 raw_response（或至少記錄了錯誤原因）",
+                all((v["raw_response"].notna() | v["error"].notna()).all()
+                    for v in frames.values()))
         k.check("04", "無任何檢索洩漏到評估集（R3C64）",
                 all(not v["retrieval_leak"].any() for v in frames.values()))
         if manifest:
@@ -240,22 +256,27 @@ def main():
     lines = ["# Acceptance report", "",
              f"- run: `{args.run}`",
              f"- PASS {sum(1 for r in k.rows if r['ok'] is True)}"
-             f" / FAIL {len(k.failed)} / SKIP {len(k.skipped)}", "",
+             f" / FAIL {len(k.failed)} / SKIP {len(k.skipped)}"
+             f" / WAIVED {len(k.waived)}", "",
              "| step | check | result | detail |", "|---|---|---|---|"]
     for r in k.rows:
-        mark = {True: "PASS", False: "**FAIL**", None: "skip"}[r["ok"]]
+        mark = {True: "PASS", False: "**FAIL**", None: "skip",
+                "waived": "WAIVED"}[r["ok"]]
         lines.append(f"| {r['step']} | {r['name']} | {mark} | {r['detail'][:80]} |")
     (out / "acceptance_report.md").write_text("\n".join(lines), encoding="utf-8")
 
     C.log(f"\n{'='*60}")
     C.log(f"PASS {sum(1 for r in k.rows if r['ok'] is True)}  "
-          f"FAIL {len(k.failed)}  SKIP {len(k.skipped)}")
+          f"FAIL {len(k.failed)}  SKIP {len(k.skipped)}  WAIVED {len(k.waived)}")
     C.log(f"報告 -> {out / 'acceptance_report.md'}")
     if k.failed:
         C.die(f"{len(k.failed)} 項驗收失敗，不得引用任何數字")
     if k.skipped and not args.allow_skips:
         C.die(f"{len(k.skipped)} 項尚未執行；全部完成後才算通過"
               "（開發中可加 --allow-skips）")
+    if k.waived:
+        C.log(f"!! {len(k.waived)} 項刻意 waive（非疏漏，已於回覆信揭露），"
+              "詳見 acceptance_report.md，回覆信與論文措辭需與此一致")
     C.log("全部通過。")
 
 

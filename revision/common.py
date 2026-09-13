@@ -396,7 +396,13 @@ def add_run_arg(parser):
 
 
 def log(msg):
-    print(msg, flush=True)
+    try:
+        print(msg, flush=True)
+    except UnicodeEncodeError:
+        # Windows 主控台預設用系統 codepage（如 cp950），印不出部分符號
+        # （例如 ≥）。這裡退而求其次改印可安全編碼的版本，不讓整支腳本中斷。
+        enc = sys.stdout.encoding or "ascii"
+        print(str(msg).encode(enc, errors="backslashreplace").decode(enc), flush=True)
 
 
 def die(msg):

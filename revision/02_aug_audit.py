@@ -174,6 +174,11 @@ def main():
             "n_rows": len(sheet_out),
             "per_label": {k: int(v) for k, v in sheet.groupby("label").size().items()},
             "next_step": "兩位評分者各自填 rater1/rater2_label_preserved（1=保留, 0=未保留），回讀計算 Cohen's kappa 與 Wilson 95% CI",
+            "status_2026_09_14": (
+                "EDC15/R2C11 的人工稽核因內部死線時間不足，主動決定不做，"
+                "已在回覆信中揭露為本次修訂的限制（見 revision/README.md）。"
+                "本表仍會產生，若日後有餘裕仍可回頭填寫。"
+            ),
         },
         "note": "本步驟不重建索引；aug_filtered.jsonl 僅供 §7 所列的延後消融使用。",
     })

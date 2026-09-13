@@ -63,7 +63,12 @@ python 09_verify_all.py    --run $RUN      # 驗收 gate，必須 0 FAIL
 00–02 不呼叫 LLM，可在任何機器跑；03–04 需要 Ollama 與 GPU；07 的 DistilBERT
 需要 GPU（可用 `--skip-distilbert` 略過）。03 與 04 都可中斷續跑。
 
-**沒有通過 `09_verify_all.py`（0 FAIL、0 SKIP）之前，不得引用任何數字。**
+**沒有通過 `09_verify_all.py`（0 FAIL、0 SKIP，WAIVED 不算在內）之前，不得引用任何數字。**
+
+**2026-09-14 決定**：`label_preservation_sheet.csv` 的人工稽核（EDC15 / R2C11）因內部
+死線時間不足，主動決定不做，已在回覆信中揭露為本次修訂的限制。`09_verify_all.py`
+將此項計為 **WAIVED**（刻意不做、已揭露），不同於 SKIP（尚未做完），不會擋住驗收
+gate——03–08 的其餘數字與此項無關，可正常引用。
 
 ## 輸出
 
@@ -72,7 +77,7 @@ python 09_verify_all.py    --run $RUN      # 驗收 gate，必須 0 FAIL
 | `run_manifest.json` | 所有 implementation settings | EDC14, R3C11–13, R3C23 |
 | `exclusion_report.json` | 各階段 per-class N、剔除理由、近似重複掃描 | EDC13, R2C7/13/25, R3C24/61/64/65 |
 | `aug_audit.json` | 生成樣板率、標籤詞率、過濾統計 | EDC15, R2C10/11 |
-| `label_preservation_sheet.csv` | 200 筆人工稽核表（**需兩位評分者填寫後回收**） | R2C11 |
+| `label_preservation_sheet.csv` | 200 筆人工稽核表（**已決定不做，見上方 2026-09-14 決定**） | R2C11 |
 | `best_prompt.json` | 勝出模板全文、SHA256、各輪準確率 | R2C9, R3C33 |
 | `preds/*.jsonl` | **逐筆預測 —— 上一輪缺的就是這個，務必永久保存** | EDC17, R2C16 |
 | `metrics.json` | 兩種 invalid 分母慣例下的完整指標 | EDC18, R2C23, R3C18 |
