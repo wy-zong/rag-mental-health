@@ -32,3 +32,9 @@ Thumbs.db
 .vscode/
 .idea/
 .ipynb_checkpoints/
+
+# ---- 修訂重跑（revision/）的產出 ----
+# 逐筆預測與小型結果檔必須保留：上一輪就是因為沒有保存逐筆預測，
+# 才導致審稿人要求的 paired 統計檢定無法補算。
+# 只忽略可在數秒內由 02_aug_audit.py 重新生成的大檔。
+runs/*/aug_filtered.jsonl

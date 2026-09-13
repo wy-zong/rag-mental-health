@@ -1,0 +1,17 @@
+{
+  "provenance": {
+    "n_candidate_templates": 122,
+    "unoptimized_prompt_sha256": "b9d9a4a4ec80ba87b018eeaa25a68b378271f44c6ca2640d7f3756e2b96cfaae",
+    "unoptimized_matches_testpy": true,
+    "unoptimized_template_index": 0,
+    "llama_only_prompt_sha256": "50e686fcb169a78fbfa20e6d8950934ea41bcb7608091aaaf31b554eadd0db7c",
+    "llama_only_reconstructed": true,
+    "llama_only_note": "原始程式碼未包含 Llama-only 條件的 prompt；此處以未最佳化 prompt 去除 reference-context 區塊重建，必須在論文中揭露。",
+    "table8_equals_unoptimized": true,
+    "table8_note": "論文 Table VIII 宣稱的最佳化 prompt 正規化後等於未最佳化 prompt（模板 #0）；真正勝出的模板未被持久化而遺失，因此本次於 val222 上重新選擇。"
+  },
+  "llama_only": "Classify the text into one of {valid_labels}.\n\nNow classify this text:\n{text}\n\nPlease only output one of the following labels: {valid_labels}. Do not output anything else.",
+  "unoptimized": "Classify the text into one of {valid_labels}.\nBelow is some related reference content that might help you classify the new text:\n{reference_context}\n\nNow classify this text:\n{text}\n\nPlease only output one of the following labels: {valid_labels}. Do not output anything else.",
+  "optimized": null,
+  "note": "optimized 欄位在 03_select_prompt.py 執行後才會有值。"
+}

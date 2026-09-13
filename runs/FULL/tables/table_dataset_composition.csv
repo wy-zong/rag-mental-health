@@ -1,0 +1,7 @@
+﻿Stage,N,Anxiety,Bipolar,Depression,Normal,Reason
+test_original,2222,556,555,556,555,
+excluded_val222,222,60,51,56,55,曾用於 TPE prompt 選擇，追認為 validation set（EDC13）
+excluded_exact_dup,134,33,92,6,3,原文逐字存在於檢索語料中，且語料條目附有 true_label（R3C64）
+excluded_near_dup,2,1,0,1,0,與檢索語料的 cosine 相似度超過門檻（R3C64）
+eligible_pool,1882,466,425,494,497,
+test_clean,1700,425,425,425,425,

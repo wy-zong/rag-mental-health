@@ -1,0 +1,99 @@
+{
+  "protocol": "訓練只用既有 train CSV；early stopping 只看 val222；test_clean 只評估一次，且與 LLM 條件的 item_id 完全相同",
+  "n_train": 8886,
+  "n_val": 222,
+  "n_test": 1700,
+  "baselines": {
+    "tfidf_lr": {
+      "seeds": [
+        1,
+        2,
+        3
+      ],
+      "per_seed": [
+        {
+          "seed": 1,
+          "metrics": {
+            "accuracy": 0.8776470588235294,
+            "macro_f1": 0.8770709094643121,
+            "weighted_f1": 0.8770709094643121
+          },
+          "train_sec": 7.389961242675781,
+          "infer_sec": 0.30625128746032715
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "accuracy": 0.8776470588235294,
+            "macro_f1": 0.8770709094643121,
+            "weighted_f1": 0.8770709094643121
+          },
+          "train_sec": 8.260385751724243,
+          "infer_sec": 0.3462095260620117
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "accuracy": 0.8776470588235294,
+            "macro_f1": 0.8770709094643121,
+            "weighted_f1": 0.8770709094643121
+          },
+          "train_sec": 7.624101638793945,
+          "infer_sec": 0.32744741439819336
+        }
+      ],
+      "accuracy_mean": 0.8776470588235293,
+      "accuracy_sd": 1.3597399555105182e-16,
+      "macro_f1_mean": 0.8770709094643121,
+      "macro_f1_sd": 0.0,
+      "train_sec": 7.75814954439799,
+      "infer_sec": 0.32663607597351074
+    },
+    "minilm_lr": {
+      "seeds": [
+        1,
+        2,
+        3
+      ],
+      "per_seed": [
+        {
+          "seed": 1,
+          "metrics": {
+            "accuracy": 0.8641176470588235,
+            "macro_f1": 0.8636995931198013,
+            "weighted_f1": 0.8636995931198012
+          },
+          "train_sec": 125.90329241752625,
+          "infer_sec": 24.675608158111572
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "accuracy": 0.8641176470588235,
+            "macro_f1": 0.8636995931198013,
+            "weighted_f1": 0.8636995931198012
+          },
+          "train_sec": 125.86842489242554,
+          "infer_sec": 24.67567229270935
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "accuracy": 0.8641176470588235,
+            "macro_f1": 0.8636995931198013,
+            "weighted_f1": 0.8636995931198012
+          },
+          "train_sec": 125.87585234642029,
+          "infer_sec": 24.676508903503418
+        }
+      ],
+      "accuracy_mean": 0.8641176470588235,
+      "accuracy_sd": 0.0,
+      "macro_f1_mean": 0.8636995931198013,
+      "macro_f1_sd": 0.0,
+      "train_sec": 125.8825232187907,
+      "infer_sec": 24.67592978477478
+    }
+  },
+  "note": "這些 baseline 的用途是回應 EDC19 與 R3C34 —— 若 DistilBERT 勝過本流程，論文的論點必須改以成本、延遲與免標註資料為軸線陳述。"
+}

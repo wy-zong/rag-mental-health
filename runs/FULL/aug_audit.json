@@ -1,0 +1,66 @@
+{
+  "source_file": "C:\\Users\\wuc120\\Code\\faiss\\llm資料擴增_rag_docs.json",
+  "sha256": "d57c2b08a35010783888c811c2b24d54ba0832c413e676ab045efb32e20b43ef",
+  "triplet_structure_verified": true,
+  "n_source_rows": 8886,
+  "n_paraphrases": 17772,
+  "generation_artifacts": {
+    "starts_with_here_loose": {
+      "n": 11721,
+      "pct": 66.0
+    },
+    "preamble_boilerplate": {
+      "n": 11672,
+      "pct": 65.7
+    },
+    "own_label_word_in_raw_text": {
+      "n": 10285,
+      "pct": 57.9
+    },
+    "blank_line_split": {
+      "n": 12507,
+      "pct": 70.4
+    },
+    "own_label_word_in_body": {
+      "n": 5819,
+      "pct": 32.7
+    },
+    "other_label_word_in_body": {
+      "n": 2381,
+      "pct": 13.4
+    },
+    "empty_after_cleaning": {
+      "n": 0
+    },
+    "len_ratio": {
+      "p05": 0.188,
+      "median": 1.157,
+      "p95": 4.537
+    }
+  },
+  "filters": {
+    "drop_empty": 0,
+    "drop_len": 5329,
+    "drop_other_label": 2381,
+    "drop_dup_of_source": 5,
+    "retained": 10444
+  },
+  "filter_rules": {
+    "drop_empty": "清掉樣板前綴後為空",
+    "drop_len": "與原文長度比不在 [0.5, 2.0]",
+    "drop_other_label": "內文出現與自身標籤不同的類別詞（標籤噪音）",
+    "drop_dup_of_source": "改寫後與原文完全相同"
+  },
+  "interpretation": "樣板前綴使 embedding 編碼到的是指令跟隨語而非文本語意，這是擴增只帶來 +0.0009 準確率的直接解釋（EDC15 / EDC16）。自身類別詞出現在內文並非額外洩漏 —— 語料條目本來就以 '<statement> true_label is <label>' 的形式附帶標籤；真正有問題的是他類類別詞（標籤噪音）與樣板前綴。",
+  "audit_sheet": {
+    "n_rows": 200,
+    "per_label": {
+      "Anxiety": 50,
+      "Bipolar": 50,
+      "Depression": 50,
+      "Normal": 50
+    },
+    "next_step": "兩位評分者各自填 rater1/rater2_label_preserved（1=保留, 0=未保留），回讀計算 Cohen's kappa 與 Wilson 95% CI"
+  },
+  "note": "本步驟不重建索引；aug_filtered.jsonl 僅供 §7 所列的延後消融使用。"
+}
