@@ -1,0 +1,34 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+*.egg-info/
+
+# ---- 資料集與模型索引（體積大、可重新產生，不入版控）----
+csv/*
+faiss/*
+!csv/.gitkeep
+!faiss/.gitkeep
+*.bin
+*.npy
+*.pkl
+
+# ---- 金鑰 / 環境設定 ----
+.env
+.env.*
+*.key
+
+# ---- 輸出結果 ----
+*.log
+outputs/
+results/
+
+# ---- OS / 編輯器 ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.ipynb_checkpoints/
