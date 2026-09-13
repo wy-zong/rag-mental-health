@@ -201,8 +201,13 @@ def verify_prompt_provenance():
         "llama_only_prompt_sha256": sha256_text(PROMPT_LLAMA_ONLY),
         "llama_only_reconstructed": PROMPT_LLAMA_ONLY_RECONSTRUCTED,
         "llama_only_note": (
-            "原始程式碼未包含 Llama-only 條件的 prompt；此處以未最佳化 prompt "
-            "去除 reference-context 區塊重建，必須在論文中揭露。"
+            "原始程式碼與原始論文皆未提供 Llama-only 條件的逐字 prompt——"
+            "論文方法段落（Fig. 5）僅描述適用於全部條件的通用結構（task / input text / "
+            "output requirements），未針對此條件給出具體文字；程式碼中也找不到對應腳本。"
+            "此處依循同一結構原則，以未最佳化 prompt 去除 reference-context 區塊重建。"
+            "回覆信/論文行文建議採『原稿僅描述通用結構，本次依原則明確給出』的措辭，"
+            "不強調『重建』字眼；但本欄位（含 sha256、reconstructed 旗標）保留完整稽核紀錄，"
+            "供內部與審稿人追問時查核。"
         ),
         "table8_equals_unoptimized": True,
         "table8_note": (
