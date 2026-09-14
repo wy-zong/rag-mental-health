@@ -1,0 +1,175 @@
+{
+  "n_paired_samples": 1700,
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 42,
+    "scheme": "對樣本成對重抽（同一組索引套用到所有條件）"
+  },
+  "significance_test": "exact McNemar (binomial, two-sided)",
+  "multiplicity_correction": "Holm",
+  "point_estimates": {
+    "C1_llama_only": {
+      "accuracy": 0.7382352941176471,
+      "macro_f1": 0.7401080922575373,
+      "n_invalid": 14
+    },
+    "C2_rag_unopt_noaug": {
+      "accuracy": 0.8182352941176471,
+      "macro_f1": 0.819299790199307,
+      "n_invalid": 3
+    },
+    "C3_rag_unopt_aug": {
+      "accuracy": 0.8164705882352942,
+      "macro_f1": 0.8181742124415989,
+      "n_invalid": 6
+    },
+    "C4_rag_opt_noaug": {
+      "accuracy": 0.7923529411764706,
+      "macro_f1": 0.795115855539766,
+      "n_invalid": 7
+    },
+    "C5_rag_opt_aug": {
+      "accuracy": 0.7929411764705883,
+      "macro_f1": 0.7958256559978258,
+      "n_invalid": 8
+    }
+  },
+  "comparisons": [
+    {
+      "from": "C1_llama_only",
+      "to": "C2_rag_unopt_noaug",
+      "question": "加入 RAG 的效果",
+      "mcnemar": {
+        "b_only_to_correct": 228,
+        "c_only_from_correct": 92,
+        "n_discordant": 320,
+        "exact_p": 1.7957550740833084e-14,
+        "holm_adjusted_p": 8.978775370416542e-14
+      },
+      "delta_accuracy": 0.07999999999999996,
+      "delta_accuracy_pp": 8.0,
+      "delta_accuracy_ci95": [
+        0.05999999999999994,
+        0.09999999999999998
+      ],
+      "delta_macro_f1": 0.07919169794176972,
+      "delta_macro_f1_ci95": [
+        0.058960720899818804,
+        0.0993804547105722
+      ],
+      "relative_error_reduction": 0.3056179775280898,
+      "n_samples_with_different_outcome": 378,
+      "delta_invalid": -11,
+      "ci_excludes_zero": true
+    },
+    {
+      "from": "C2_rag_unopt_noaug",
+      "to": "C3_rag_unopt_aug",
+      "question": "未最佳化 prompt 下，加入資料擴增的效果",
+      "mcnemar": {
+        "b_only_to_correct": 26,
+        "c_only_from_correct": 29,
+        "n_discordant": 55,
+        "exact_p": 0.7877061896700431,
+        "holm_adjusted_p": 1.0
+      },
+      "delta_accuracy": -0.0017647058823528905,
+      "delta_accuracy_pp": -0.176,
+      "delta_accuracy_ci95": [
+        -0.010588235294117565,
+        0.007058823529411673
+      ],
+      "delta_macro_f1": -0.0011255777577080517,
+      "delta_macro_f1_ci95": [
+        -0.009555511949253572,
+        0.007351157369674045
+      ],
+      "relative_error_reduction": -0.009708737864077392,
+      "n_samples_with_different_outcome": 78,
+      "delta_invalid": 3,
+      "ci_excludes_zero": false
+    },
+    {
+      "from": "C2_rag_unopt_noaug",
+      "to": "C4_rag_opt_noaug",
+      "question": "未擴增下，加入 prompt 最佳化的效果",
+      "mcnemar": {
+        "b_only_to_correct": 41,
+        "c_only_from_correct": 85,
+        "n_discordant": 126,
+        "exact_p": 0.00011021131111835083,
+        "holm_adjusted_p": 0.00033063393335505247
+      },
+      "delta_accuracy": -0.025882352941176467,
+      "delta_accuracy_pp": -2.588,
+      "delta_accuracy_ci95": [
+        -0.0388235294117647,
+        -0.012941176470588234
+      ],
+      "delta_macro_f1": -0.02418393465954094,
+      "delta_macro_f1_ci95": [
+        -0.036881111876667136,
+        -0.011670419438275922
+      ],
+      "relative_error_reduction": -0.14239482200647247,
+      "n_samples_with_different_outcome": 158,
+      "delta_invalid": 4,
+      "ci_excludes_zero": true
+    },
+    {
+      "from": "C4_rag_opt_noaug",
+      "to": "C5_rag_opt_aug",
+      "question": "最佳化 prompt 下，加入資料擴增的效果（主要比較）",
+      "mcnemar": {
+        "b_only_to_correct": 38,
+        "c_only_from_correct": 37,
+        "n_discordant": 75,
+        "exact_p": 1.0,
+        "holm_adjusted_p": 1.0
+      },
+      "delta_accuracy": 0.0005882352941176672,
+      "delta_accuracy_pp": 0.059,
+      "delta_accuracy_ci95": [
+        -0.009411764705882342,
+        0.010588235294117676
+      ],
+      "delta_macro_f1": 0.000709800458059795,
+      "delta_macro_f1_ci95": [
+        -0.008995121720920577,
+        0.010529128786054989
+      ],
+      "relative_error_reduction": 0.0028328611898017966,
+      "n_samples_with_different_outcome": 91,
+      "delta_invalid": 1,
+      "ci_excludes_zero": false
+    },
+    {
+      "from": "C1_llama_only",
+      "to": "C5_rag_opt_aug",
+      "question": "完整流程相對於裸模型",
+      "mcnemar": {
+        "b_only_to_correct": 240,
+        "c_only_from_correct": 147,
+        "n_discordant": 387,
+        "exact_p": 2.6261588135601598e-06,
+        "holm_adjusted_p": 1.0504635254240639e-05
+      },
+      "delta_accuracy": 0.05470588235294116,
+      "delta_accuracy_pp": 5.471,
+      "delta_accuracy_ci95": [
+        0.032352941176470584,
+        0.07705882352941174
+      ],
+      "delta_macro_f1": 0.05571756374028858,
+      "delta_macro_f1_ci95": [
+        0.03334683914789066,
+        0.07783267469593798
+      ],
+      "relative_error_reduction": 0.2089887640449438,
+      "n_samples_with_different_outcome": 453,
+      "delta_invalid": -6,
+      "ci_excludes_zero": true
+    }
+  ],
+  "note": "accuracy 採慣例 A（invalid 視為錯誤，分母 = 全部樣本）。本研究不微調權重，CI 建立在樣本母體上。"
+}

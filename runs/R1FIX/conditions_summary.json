@@ -1,0 +1,67 @@
+{
+  "conditions": {
+    "C1_llama_only": {
+      "n": 1700,
+      "accuracy_invalid_as_wrong": 0.7382352941176471,
+      "n_invalid": 14,
+      "invalid_reasons": {
+        "multi_label": 1,
+        "no_label": 13
+      },
+      "retrieval_leaks": 0,
+      "elapsed_sec": 388.5
+    },
+    "C2_rag_unopt_noaug": {
+      "n": 1700,
+      "accuracy_invalid_as_wrong": 0.8182352941176471,
+      "n_invalid": 3,
+      "invalid_reasons": {
+        "no_label": 3
+      },
+      "retrieval_leaks": 0,
+      "elapsed_sec": 705.8
+    },
+    "C3_rag_unopt_aug": {
+      "n": 1700,
+      "accuracy_invalid_as_wrong": 0.8164705882352942,
+      "n_invalid": 6,
+      "invalid_reasons": {
+        "no_label": 6
+      },
+      "retrieval_leaks": 0,
+      "elapsed_sec": 735.4
+    },
+    "C4_rag_opt_noaug": {
+      "n": 1700,
+      "accuracy_invalid_as_wrong": 0.7923529411764706,
+      "n_invalid": 7,
+      "invalid_reasons": {
+        "no_label": 7
+      },
+      "retrieval_leaks": 0,
+      "elapsed_sec": 697.1
+    },
+    "C5_rag_opt_aug": {
+      "n": 1700,
+      "accuracy_invalid_as_wrong": 0.7929411764705883,
+      "n_invalid": 8,
+      "invalid_reasons": {
+        "no_label": 8
+      },
+      "retrieval_leaks": 0,
+      "elapsed_sec": 723.6
+    }
+  },
+  "determinism": {
+    "condition": "C5_rag_opt_aug",
+    "n_items": 200,
+    "repeats": 3,
+    "exact_agreement_rate": 1.0,
+    "seed": 42,
+    "temperature": 0.1,
+    "interpretation": "一致率為 1.0 代表在固定 seed 與本硬體上解碼是 deterministic；低於 0.99 則需在論文中說明殘餘變異來源，並考慮多 seed 重跑。"
+  },
+  "test_clean_n": 1700,
+  "top_k": 1,
+  "note": "正式指標由 05_metrics.py 從 preds/*.jsonl 重新計算；此處僅為執行摘要。"
+}

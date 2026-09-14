@@ -1,0 +1,8 @@
+﻿Stage,N,Anxiety,Bipolar,Depression,Normal,Personality disorder,Stress,Suicidal,Note
+raw_all_7_classes,53043,3888,2877,15404,16351,1201,2669,10653,
+excluded_classes,14523,0,0,0,0,1201,2669,10653,stress 非情緒障礙標籤；personality disorder 與 bipolar 特徵重疊；suicidal 會觸發 Llama 3.1 內建安全機制而無法穩定分類
+kept_4_classes,38520,3888,2877,15404,16351,0,0,0,
+after_dropna_statement,38365,3841,2777,15404,16343,0,0,0,
+after_balancing,11108,2777,2777,2777,2777,0,0,0,各類下採樣至最小類數量
+split_train,8886,2221,2222,2221,2222,0,0,0,
+split_test,2222,556,555,556,555,0,0,0,

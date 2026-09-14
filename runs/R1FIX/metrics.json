@@ -1,0 +1,668 @@
+{
+  "labels": [
+    "Normal",
+    "Depression",
+    "Anxiety",
+    "Bipolar"
+  ],
+  "invalid_definition": "模型輸出經解析後無法對應到唯一一個有效標籤者；細分為 no_label（未提及任何標籤）、multi_label（提及多個標籤）、empty（空輸出）、api_error（呼叫失敗）",
+  "conventions": {
+    "A_primary": "invalid 計為錯誤，分母 = 全部評估樣本數",
+    "B_secondary": "排除 invalid，分母 = 有效樣本數"
+  },
+  "results": {
+    "C1_llama_only": {
+      "n": 1700,
+      "n_invalid": 14,
+      "invalid_rate": 0.0082,
+      "invalid_reasons": {
+        "no_label": 13,
+        "multi_label": 1
+      },
+      "convention_A_primary": {
+        "denominator": 1700,
+        "denominator_note": "invalid 視為錯誤，分母 = 全部樣本",
+        "accuracy": 0.7382352941176471,
+        "per_class": {
+          "Normal": {
+            "precision": 0.7489,
+            "recall": 0.7929,
+            "f1": 0.7703,
+            "support": 425
+          },
+          "Depression": {
+            "precision": 0.714,
+            "recall": 0.7929,
+            "f1": 0.7514,
+            "support": 425
+          },
+          "Anxiety": {
+            "precision": 0.6627,
+            "recall": 0.7953,
+            "f1": 0.723,
+            "support": 425
+          },
+          "Bipolar": {
+            "precision": 0.9567,
+            "recall": 0.5718,
+            "f1": 0.7158,
+            "support": 425
+          }
+        },
+        "macro": {
+          "precision": 0.7706,
+          "recall": 0.7382,
+          "f1": 0.7401
+        },
+        "weighted": {
+          "precision": 0.7706,
+          "recall": 0.7382,
+          "f1": 0.7401
+        }
+      },
+      "convention_B_secondary": {
+        "denominator": 1686,
+        "denominator_note": "排除 invalid，分母 = 有效樣本",
+        "accuracy": 0.7443653618030842,
+        "per_class": {
+          "Normal": {
+            "precision": 0.7489,
+            "recall": 0.7948,
+            "f1": 0.7712,
+            "support": 424
+          },
+          "Depression": {
+            "precision": 0.714,
+            "recall": 0.816,
+            "f1": 0.7616,
+            "support": 413
+          },
+          "Anxiety": {
+            "precision": 0.6627,
+            "recall": 0.7953,
+            "f1": 0.723,
+            "support": 425
+          },
+          "Bipolar": {
+            "precision": 0.9567,
+            "recall": 0.5731,
+            "f1": 0.7168,
+            "support": 424
+          }
+        },
+        "macro": {
+          "precision": 0.7706,
+          "recall": 0.7448,
+          "f1": 0.7431
+        },
+        "weighted": {
+          "precision": 0.7709,
+          "recall": 0.7444,
+          "f1": 0.743
+        }
+      },
+      "latency": {
+        "median_total_duration_ms": 182.27885,
+        "p95_total_duration_ms": 518.16368,
+        "mean_prompt_tokens": 226.71411764705883,
+        "mean_output_tokens": 3.228823529411765,
+        "total_gpu_sec": 385.9472698
+      }
+    },
+    "C2_rag_unopt_noaug": {
+      "n": 1700,
+      "n_invalid": 3,
+      "invalid_rate": 0.0018,
+      "invalid_reasons": {
+        "no_label": 3
+      },
+      "convention_A_primary": {
+        "denominator": 1700,
+        "denominator_note": "invalid 視為錯誤，分母 = 全部樣本",
+        "accuracy": 0.8182352941176471,
+        "per_class": {
+          "Normal": {
+            "precision": 0.922,
+            "recall": 0.8071,
+            "f1": 0.8607,
+            "support": 425
+          },
+          "Depression": {
+            "precision": 0.7692,
+            "recall": 0.8,
+            "f1": 0.7843,
+            "support": 425
+          },
+          "Anxiety": {
+            "precision": 0.7695,
+            "recall": 0.9035,
+            "f1": 0.8312,
+            "support": 425
+          },
+          "Bipolar": {
+            "precision": 0.8438,
+            "recall": 0.7624,
+            "f1": 0.801,
+            "support": 425
+          }
+        },
+        "macro": {
+          "precision": 0.8261,
+          "recall": 0.8182,
+          "f1": 0.8193
+        },
+        "weighted": {
+          "precision": 0.8261,
+          "recall": 0.8182,
+          "f1": 0.8193
+        }
+      },
+      "convention_B_secondary": {
+        "denominator": 1697,
+        "denominator_note": "排除 invalid，分母 = 有效樣本",
+        "accuracy": 0.8196817913965821,
+        "per_class": {
+          "Normal": {
+            "precision": 0.922,
+            "recall": 0.8071,
+            "f1": 0.8607,
+            "support": 425
+          },
+          "Depression": {
+            "precision": 0.7692,
+            "recall": 0.8057,
+            "f1": 0.787,
+            "support": 422
+          },
+          "Anxiety": {
+            "precision": 0.7695,
+            "recall": 0.9035,
+            "f1": 0.8312,
+            "support": 425
+          },
+          "Bipolar": {
+            "precision": 0.8438,
+            "recall": 0.7624,
+            "f1": 0.801,
+            "support": 425
+          }
+        },
+        "macro": {
+          "precision": 0.8261,
+          "recall": 0.8197,
+          "f1": 0.82
+        },
+        "weighted": {
+          "precision": 0.8262,
+          "recall": 0.8197,
+          "f1": 0.82
+        }
+      },
+      "latency": {
+        "median_total_duration_ms": 312.2268,
+        "p95_total_duration_ms": 891.576405,
+        "mean_prompt_tokens": 427.55823529411765,
+        "mean_output_tokens": 3.098235294117647,
+        "total_gpu_sec": 654.9062018
+      }
+    },
+    "C3_rag_unopt_aug": {
+      "n": 1700,
+      "n_invalid": 6,
+      "invalid_rate": 0.0035,
+      "invalid_reasons": {
+        "no_label": 6
+      },
+      "convention_A_primary": {
+        "denominator": 1700,
+        "denominator_note": "invalid 視為錯誤，分母 = 全部樣本",
+        "accuracy": 0.8164705882352942,
+        "per_class": {
+          "Normal": {
+            "precision": 0.9088,
+            "recall": 0.7976,
+            "f1": 0.8496,
+            "support": 425
+          },
+          "Depression": {
+            "precision": 0.777,
+            "recall": 0.7953,
+            "f1": 0.786,
+            "support": 425
+          },
+          "Anxiety": {
+            "precision": 0.7583,
+            "recall": 0.9082,
+            "f1": 0.8266,
+            "support": 425
+          },
+          "Bipolar": {
+            "precision": 0.8621,
+            "recall": 0.7647,
+            "f1": 0.8105,
+            "support": 425
+          }
+        },
+        "macro": {
+          "precision": 0.8266,
+          "recall": 0.8165,
+          "f1": 0.8182
+        },
+        "weighted": {
+          "precision": 0.8266,
+          "recall": 0.8165,
+          "f1": 0.8182
+        }
+      },
+      "convention_B_secondary": {
+        "denominator": 1694,
+        "denominator_note": "排除 invalid，分母 = 有效樣本",
+        "accuracy": 0.8193624557260921,
+        "per_class": {
+          "Normal": {
+            "precision": 0.9088,
+            "recall": 0.7995,
+            "f1": 0.8507,
+            "support": 424
+          },
+          "Depression": {
+            "precision": 0.777,
+            "recall": 0.8029,
+            "f1": 0.7897,
+            "support": 421
+          },
+          "Anxiety": {
+            "precision": 0.7583,
+            "recall": 0.9082,
+            "f1": 0.8266,
+            "support": 425
+          },
+          "Bipolar": {
+            "precision": 0.8621,
+            "recall": 0.7665,
+            "f1": 0.8115,
+            "support": 424
+          }
+        },
+        "macro": {
+          "precision": 0.8266,
+          "recall": 0.8193,
+          "f1": 0.8196
+        },
+        "weighted": {
+          "precision": 0.8266,
+          "recall": 0.8194,
+          "f1": 0.8197
+        }
+      },
+      "latency": {
+        "median_total_duration_ms": 338.71725,
+        "p95_total_duration_ms": 891.4923199999997,
+        "mean_prompt_tokens": 434.8629411764706,
+        "mean_output_tokens": 3.232941176470588,
+        "total_gpu_sec": 683.9361929
+      }
+    },
+    "C4_rag_opt_noaug": {
+      "n": 1700,
+      "n_invalid": 7,
+      "invalid_rate": 0.0041,
+      "invalid_reasons": {
+        "no_label": 7
+      },
+      "convention_A_primary": {
+        "denominator": 1700,
+        "denominator_note": "invalid 視為錯誤，分母 = 全部樣本",
+        "accuracy": 0.7923529411764706,
+        "per_class": {
+          "Normal": {
+            "precision": 0.9559,
+            "recall": 0.7647,
+            "f1": 0.8497,
+            "support": 425
+          },
+          "Depression": {
+            "precision": 0.7721,
+            "recall": 0.7412,
+            "f1": 0.7563,
+            "support": 425
+          },
+          "Anxiety": {
+            "precision": 0.72,
+            "recall": 0.8894,
+            "f1": 0.7958,
+            "support": 425
+          },
+          "Bipolar": {
+            "precision": 0.7833,
+            "recall": 0.7741,
+            "f1": 0.7787,
+            "support": 425
+          }
+        },
+        "macro": {
+          "precision": 0.8078,
+          "recall": 0.7924,
+          "f1": 0.7951
+        },
+        "weighted": {
+          "precision": 0.8078,
+          "recall": 0.7924,
+          "f1": 0.7951
+        }
+      },
+      "convention_B_secondary": {
+        "denominator": 1693,
+        "denominator_note": "排除 invalid，分母 = 有效樣本",
+        "accuracy": 0.7956290608387477,
+        "per_class": {
+          "Normal": {
+            "precision": 0.9559,
+            "recall": 0.7647,
+            "f1": 0.8497,
+            "support": 425
+          },
+          "Depression": {
+            "precision": 0.7721,
+            "recall": 0.75,
+            "f1": 0.7609,
+            "support": 420
+          },
+          "Anxiety": {
+            "precision": 0.72,
+            "recall": 0.8894,
+            "f1": 0.7958,
+            "support": 425
+          },
+          "Bipolar": {
+            "precision": 0.7833,
+            "recall": 0.7778,
+            "f1": 0.7805,
+            "support": 423
+          }
+        },
+        "macro": {
+          "precision": 0.8078,
+          "recall": 0.7955,
+          "f1": 0.7967
+        },
+        "weighted": {
+          "precision": 0.808,
+          "recall": 0.7956,
+          "f1": 0.7968
+        }
+      },
+      "latency": {
+        "median_total_duration_ms": 306.9529,
+        "p95_total_duration_ms": 905.211275,
+        "mean_prompt_tokens": 386.44941176470587,
+        "mean_output_tokens": 3.478235294117647,
+        "total_gpu_sec": 657.2807815
+      }
+    },
+    "C5_rag_opt_aug": {
+      "n": 1700,
+      "n_invalid": 8,
+      "invalid_rate": 0.0047,
+      "invalid_reasons": {
+        "no_label": 8
+      },
+      "convention_A_primary": {
+        "denominator": 1700,
+        "denominator_note": "invalid 視為錯誤，分母 = 全部樣本",
+        "accuracy": 0.7929411764705883,
+        "per_class": {
+          "Normal": {
+            "precision": 0.9499,
+            "recall": 0.7576,
+            "f1": 0.8429,
+            "support": 425
+          },
+          "Depression": {
+            "precision": 0.7789,
+            "recall": 0.7459,
+            "f1": 0.762,
+            "support": 425
+          },
+          "Anxiety": {
+            "precision": 0.7114,
+            "recall": 0.8988,
+            "f1": 0.7942,
+            "support": 425
+          },
+          "Bipolar": {
+            "precision": 0.7995,
+            "recall": 0.7694,
+            "f1": 0.7842,
+            "support": 425
+          }
+        },
+        "macro": {
+          "precision": 0.8099,
+          "recall": 0.7929,
+          "f1": 0.7958
+        },
+        "weighted": {
+          "precision": 0.8099,
+          "recall": 0.7929,
+          "f1": 0.7958
+        }
+      },
+      "convention_B_secondary": {
+        "denominator": 1692,
+        "denominator_note": "排除 invalid，分母 = 有效樣本",
+        "accuracy": 0.7966903073286052,
+        "per_class": {
+          "Normal": {
+            "precision": 0.9499,
+            "recall": 0.7594,
+            "f1": 0.844,
+            "support": 424
+          },
+          "Depression": {
+            "precision": 0.7789,
+            "recall": 0.7512,
+            "f1": 0.7648,
+            "support": 422
+          },
+          "Anxiety": {
+            "precision": 0.7114,
+            "recall": 0.8988,
+            "f1": 0.7942,
+            "support": 425
+          },
+          "Bipolar": {
+            "precision": 0.7995,
+            "recall": 0.7767,
+            "f1": 0.788,
+            "support": 421
+          }
+        },
+        "macro": {
+          "precision": 0.8099,
+          "recall": 0.7965,
+          "f1": 0.7977
+        },
+        "weighted": {
+          "precision": 0.8099,
+          "recall": 0.7967,
+          "f1": 0.7978
+        }
+      },
+      "latency": {
+        "median_total_duration_ms": 327.49365,
+        "p95_total_duration_ms": 898.9645049999999,
+        "mean_prompt_tokens": 393.7888235294118,
+        "mean_output_tokens": 3.4223529411764706,
+        "total_gpu_sec": 677.1412281
+      }
+    }
+  },
+  "confusion_matrices": {
+    "C1_llama_only": {
+      "Normal": {
+        "Normal": 337,
+        "Depression": 15,
+        "Anxiety": 59,
+        "Bipolar": 39
+      },
+      "Depression": {
+        "Normal": 23,
+        "Depression": 337,
+        "Anxiety": 27,
+        "Bipolar": 85
+      },
+      "Anxiety": {
+        "Normal": 60,
+        "Depression": 55,
+        "Anxiety": 338,
+        "Bipolar": 57
+      },
+      "Bipolar": {
+        "Normal": 4,
+        "Depression": 6,
+        "Anxiety": 1,
+        "Bipolar": 243
+      },
+      "INVALID": {
+        "Normal": 1,
+        "Depression": 12,
+        "Anxiety": 0,
+        "Bipolar": 1
+      }
+    },
+    "C2_rag_unopt_noaug": {
+      "Normal": {
+        "Normal": 343,
+        "Depression": 8,
+        "Anxiety": 13,
+        "Bipolar": 8
+      },
+      "Depression": {
+        "Normal": 37,
+        "Depression": 340,
+        "Anxiety": 16,
+        "Bipolar": 49
+      },
+      "Anxiety": {
+        "Normal": 28,
+        "Depression": 43,
+        "Anxiety": 384,
+        "Bipolar": 44
+      },
+      "Bipolar": {
+        "Normal": 17,
+        "Depression": 31,
+        "Anxiety": 12,
+        "Bipolar": 324
+      },
+      "INVALID": {
+        "Normal": 0,
+        "Depression": 3,
+        "Anxiety": 0,
+        "Bipolar": 0
+      }
+    },
+    "C3_rag_unopt_aug": {
+      "Normal": {
+        "Normal": 339,
+        "Depression": 9,
+        "Anxiety": 14,
+        "Bipolar": 11
+      },
+      "Depression": {
+        "Normal": 33,
+        "Depression": 338,
+        "Anxiety": 17,
+        "Bipolar": 47
+      },
+      "Anxiety": {
+        "Normal": 34,
+        "Depression": 48,
+        "Anxiety": 386,
+        "Bipolar": 41
+      },
+      "Bipolar": {
+        "Normal": 18,
+        "Depression": 26,
+        "Anxiety": 8,
+        "Bipolar": 325
+      },
+      "INVALID": {
+        "Normal": 1,
+        "Depression": 4,
+        "Anxiety": 0,
+        "Bipolar": 1
+      }
+    },
+    "C4_rag_opt_noaug": {
+      "Normal": {
+        "Normal": 325,
+        "Depression": 5,
+        "Anxiety": 6,
+        "Bipolar": 4
+      },
+      "Depression": {
+        "Normal": 27,
+        "Depression": 315,
+        "Anxiety": 17,
+        "Bipolar": 49
+      },
+      "Anxiety": {
+        "Normal": 49,
+        "Depression": 57,
+        "Anxiety": 378,
+        "Bipolar": 41
+      },
+      "Bipolar": {
+        "Normal": 24,
+        "Depression": 43,
+        "Anxiety": 24,
+        "Bipolar": 329
+      },
+      "INVALID": {
+        "Normal": 0,
+        "Depression": 5,
+        "Anxiety": 0,
+        "Bipolar": 2
+      }
+    },
+    "C5_rag_opt_aug": {
+      "Normal": {
+        "Normal": 322,
+        "Depression": 5,
+        "Anxiety": 7,
+        "Bipolar": 5
+      },
+      "Depression": {
+        "Normal": 25,
+        "Depression": 317,
+        "Anxiety": 17,
+        "Bipolar": 48
+      },
+      "Anxiety": {
+        "Normal": 52,
+        "Depression": 62,
+        "Anxiety": 382,
+        "Bipolar": 41
+      },
+      "Bipolar": {
+        "Normal": 25,
+        "Depression": 38,
+        "Anxiety": 19,
+        "Bipolar": 327
+      },
+      "INVALID": {
+        "Normal": 1,
+        "Depression": 3,
+        "Anxiety": 0,
+        "Bipolar": 4
+      }
+    }
+  },
+  "num_ctx_check": {
+    "num_ctx": 8192,
+    "max_prompt_eval_count": 5017,
+    "ok": true
+  }
+}

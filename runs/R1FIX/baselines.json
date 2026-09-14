@@ -1,0 +1,150 @@
+{
+  "protocol": "訓練只用既有 train CSV；early stopping 只看 val222；test_clean 只評估一次，且與 LLM 條件的 item_id 完全相同",
+  "n_train": 8886,
+  "n_val": 222,
+  "n_test": 1700,
+  "baselines": {
+    "tfidf_lr": {
+      "seeds": [
+        1,
+        2,
+        3
+      ],
+      "per_seed": [
+        {
+          "seed": 1,
+          "metrics": {
+            "accuracy": 0.8776470588235294,
+            "macro_f1": 0.8770709094643121,
+            "weighted_f1": 0.8770709094643121
+          },
+          "train_sec": 7.117980003356934,
+          "infer_sec": 0.2696380615234375
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "accuracy": 0.8776470588235294,
+            "macro_f1": 0.8770709094643121,
+            "weighted_f1": 0.8770709094643121
+          },
+          "train_sec": 6.438774347305298,
+          "infer_sec": 0.2796781063079834
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "accuracy": 0.8776470588235294,
+            "macro_f1": 0.8770709094643121,
+            "weighted_f1": 0.8770709094643121
+          },
+          "train_sec": 6.546282529830933,
+          "infer_sec": 0.27344560623168945
+        }
+      ],
+      "accuracy_mean": 0.8776470588235293,
+      "accuracy_sd": 1.3597399555105182e-16,
+      "macro_f1_mean": 0.8770709094643121,
+      "macro_f1_sd": 0.0,
+      "train_sec": 6.701012293497722,
+      "infer_sec": 0.27425392468770343
+    },
+    "minilm_lr": {
+      "seeds": [
+        1,
+        2,
+        3
+      ],
+      "per_seed": [
+        {
+          "seed": 1,
+          "metrics": {
+            "accuracy": 0.8641176470588235,
+            "macro_f1": 0.8636995931198013,
+            "weighted_f1": 0.8636995931198012
+          },
+          "train_sec": 127.22373414039612,
+          "infer_sec": 23.219237089157104
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "accuracy": 0.8641176470588235,
+            "macro_f1": 0.8636995931198013,
+            "weighted_f1": 0.8636995931198012
+          },
+          "train_sec": 127.19460105895996,
+          "infer_sec": 23.214837312698364
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "accuracy": 0.8641176470588235,
+            "macro_f1": 0.8636995931198013,
+            "weighted_f1": 0.8636995931198012
+          },
+          "train_sec": 127.13203930854797,
+          "infer_sec": 23.214847326278687
+        }
+      ],
+      "accuracy_mean": 0.8641176470588235,
+      "accuracy_sd": 0.0,
+      "macro_f1_mean": 0.8636995931198013,
+      "macro_f1_sd": 0.0,
+      "train_sec": 127.18345816930135,
+      "infer_sec": 23.216307242711384
+    },
+    "distilbert": {
+      "seeds": [
+        1,
+        2,
+        3
+      ],
+      "per_seed": [
+        {
+          "seed": 1,
+          "metrics": {
+            "accuracy": 0.9276470588235294,
+            "macro_f1": 0.9280721102177316,
+            "weighted_f1": 0.9280721102177315
+          },
+          "train_sec": 10189.877690553665,
+          "infer_sec": 143.94711756706238,
+          "best_val_accuracy": 0.9279279279279279
+        },
+        {
+          "seed": 2,
+          "metrics": {
+            "accuracy": 0.9370588235294117,
+            "macro_f1": 0.9369681818584795,
+            "weighted_f1": 0.9369681818584794
+          },
+          "train_sec": 10288.806761741638,
+          "infer_sec": 144.70690870285034,
+          "best_val_accuracy": 0.9279279279279279
+        },
+        {
+          "seed": 3,
+          "metrics": {
+            "accuracy": 0.9358823529411765,
+            "macro_f1": 0.935853728807913,
+            "weighted_f1": 0.935853728807913
+          },
+          "train_sec": 10215.27182173729,
+          "infer_sec": 139.46543884277344,
+          "best_val_accuracy": 0.9324324324324325
+        }
+      ],
+      "accuracy_mean": 0.9335294117647059,
+      "accuracy_sd": 0.005128116404165509,
+      "macro_f1_mean": 0.9336313402947081,
+      "macro_f1_sd": 0.004846574118596421,
+      "train_sec": 10231.318758010864,
+      "infer_sec": 142.70648837089539,
+      "device": "cpu",
+      "peak_vram_gb": null,
+      "n_params": 66956548
+    }
+  },
+  "note": "這些 baseline 的用途是回應 EDC19 與 R3C34 —— 若 DistilBERT 勝過本流程，論文的論點必須改以成本、延遲與免標註資料為軸線陳述。"
+}

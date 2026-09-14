@@ -1,0 +1,9 @@
+**Marginal contribution of each component**
+
+| Comparison                                                         | What it isolates             |   Δ Accuracy (pp) | 95% CI (pp)     |   Δ Macro-F1 |   Relative error reduction | Discordant (b/c)   |   N differing |   McNemar p |   Holm p |   Δ Invalid |
+|:-------------------------------------------------------------------|:-----------------------------|------------------:|:----------------|-------------:|---------------------------:|:-------------------|--------------:|------------:|---------:|------------:|
+| Llama 3.1 only → + RAG                                             | 加入 RAG 的效果                   |             8     | [+6.00, +10.00] |       0.0792 |                     0.3056 | 228/92             |           378 |     0       |  0       |         -11 |
+| + RAG → + RAG + augmentation                                       | 未最佳化 prompt 下，加入資料擴增的效果      |            -0.176 | [-1.06, +0.71]  |      -0.0011 |                    -0.0097 | 26/29              |            78 |     0.78771 |  1       |           3 |
+| + RAG → + RAG + optimized prompt                                   | 未擴增下，加入 prompt 最佳化的效果        |            -2.588 | [-3.88, -1.29]  |      -0.0242 |                    -0.1424 | 41/85              |           158 |     0.00011 |  0.00033 |           4 |
+| + RAG + optimized prompt → + RAG + optimized prompt + augmentation | 最佳化 prompt 下，加入資料擴增的效果（主要比較） |             0.059 | [-0.94, +1.06]  |       0.0007 |                     0.0028 | 38/37              |            91 |     1       |  1       |           1 |
+| Llama 3.1 only → + RAG + optimized prompt + augmentation           | 完整流程相對於裸模型                   |             5.471 | [+3.24, +7.71]  |       0.0557 |                     0.209  | 240/147            |           453 |     0       |  1e-05   |          -6 |

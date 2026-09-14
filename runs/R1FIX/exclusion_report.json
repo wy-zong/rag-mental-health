@@ -1,0 +1,179 @@
+{
+  "source_files": {
+    "test_csv": "C:\\Users\\wuc120\\Code\\csv\\Combined_Data_Balanced_test_data.csv",
+    "test_sha256": "6fe1f445610f014bde6e8bd5523cd99fbb5ebf84bf9910c841abe7c6beb887b6",
+    "train_csv": "C:\\Users\\wuc120\\Code\\csv\\Combined_Data_Balanced_train_data.csv",
+    "train_sha256": "45da2ae104dba3b15c2e5e4458db4d4f14e40e1ed2be4b425239d5e98bbcc9bd"
+  },
+  "language": "English",
+  "seed": 42,
+  "provenance_chain": {
+    "raw_all_7_classes": {
+      "n": 53043,
+      "per_class": {
+        "Anxiety": 3888,
+        "Bipolar": 2877,
+        "Depression": 15404,
+        "Normal": 16351,
+        "Personality disorder": 1201,
+        "Stress": 2669,
+        "Suicidal": 10653
+      }
+    },
+    "excluded_classes": {
+      "classes": [
+        "Suicidal",
+        "Stress",
+        "Personality disorder"
+      ],
+      "per_class": {
+        "Personality disorder": 1201,
+        "Stress": 2669,
+        "Suicidal": 10653
+      },
+      "reason": "stress 非情緒障礙標籤；personality disorder 與 bipolar 特徵重疊；suicidal 會觸發 Llama 3.1 內建安全機制而無法穩定分類"
+    },
+    "kept_4_classes": {
+      "n": 38520,
+      "per_class": {
+        "Anxiety": 3888,
+        "Bipolar": 2877,
+        "Depression": 15404,
+        "Normal": 16351
+      }
+    },
+    "after_dropna_statement": {
+      "n": 38365,
+      "per_class": {
+        "Anxiety": 3841,
+        "Bipolar": 2777,
+        "Depression": 15404,
+        "Normal": 16343
+      },
+      "n_dropped": 155
+    },
+    "after_balancing": {
+      "n": 11108,
+      "per_class": {
+        "Anxiety": 2777,
+        "Bipolar": 2777,
+        "Depression": 2777,
+        "Normal": 2777
+      },
+      "method": "各類下採樣至最小類數量"
+    },
+    "split_train": {
+      "n": 8886,
+      "per_class": {
+        "Anxiety": 2221,
+        "Bipolar": 2222,
+        "Depression": 2221,
+        "Normal": 2222
+      }
+    },
+    "split_test": {
+      "n": 2222,
+      "per_class": {
+        "Anxiety": 556,
+        "Bipolar": 555,
+        "Depression": 556,
+        "Normal": 555
+      }
+    },
+    "split_method": "stratified 80/20, random_state=42",
+    "raw_quality": {
+      "n_null_statement": 362,
+      "n_duplicate_statement": 1969,
+      "note": "原始檔含重複文本且切分前未去重，是 134 筆測試樣本落入檢索語料的根因"
+    }
+  },
+  "stages": {
+    "test_original": {
+      "n": 2222,
+      "per_class": {
+        "Anxiety": 556,
+        "Bipolar": 555,
+        "Depression": 556,
+        "Normal": 555
+      }
+    },
+    "excluded_val222": {
+      "n": 222,
+      "per_class": {
+        "Anxiety": 60,
+        "Bipolar": 51,
+        "Depression": 56,
+        "Normal": 55
+      },
+      "reason": "曾用於 TPE prompt 選擇，追認為 validation set（EDC13）"
+    },
+    "excluded_exact_dup": {
+      "n": 134,
+      "per_class": {
+        "Anxiety": 33,
+        "Bipolar": 92,
+        "Depression": 6,
+        "Normal": 3
+      },
+      "reason": "原文逐字存在於檢索語料中，且語料條目附有 true_label（R3C64）"
+    },
+    "excluded_near_dup": {
+      "n": 2,
+      "per_class": {
+        "Anxiety": 1,
+        "Depression": 1
+      },
+      "reason": "與檢索語料的 cosine 相似度超過門檻（R3C64）"
+    },
+    "eligible_pool": {
+      "n": 1882,
+      "per_class": {
+        "Anxiety": 466,
+        "Bipolar": 425,
+        "Depression": 494,
+        "Normal": 497
+      }
+    },
+    "test_clean": {
+      "n": 1700,
+      "per_class": {
+        "Anxiety": 425,
+        "Bipolar": 425,
+        "Depression": 425,
+        "Normal": 425
+      },
+      "n_per_class": 425
+    }
+  },
+  "train_per_class": {
+    "Anxiety": 2221,
+    "Bipolar": 2222,
+    "Depression": 2221,
+    "Normal": 2222
+  },
+  "near_duplicate_scan": {
+    "method": "cosine on all-MiniLM-L6-v2 embeddings vs reconstructed FAISS vectors",
+    "threshold": 0.95,
+    "n_excluded": 2,
+    "per_index": {
+      "noaug": {
+        "corpus_size": 8886,
+        "n_ge_0.90": 3,
+        "n_ge_0.95": 2,
+        "max_similarity": 0.9909875988960266,
+        "median_similarity": 0.6341732144355774
+      },
+      "aug": {
+        "corpus_size": 26658,
+        "n_ge_0.90": 3,
+        "n_ge_0.95": 2,
+        "max_similarity": 0.9909875988960266,
+        "median_similarity": 0.6404706239700317
+      }
+    }
+  },
+  "overlaps": {
+    "test_clean_vs_val222": 0,
+    "test_clean_vs_train_keys": 0
+  }
+}

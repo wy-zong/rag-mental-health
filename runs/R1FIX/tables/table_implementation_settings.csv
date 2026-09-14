@@ -1,0 +1,23 @@
+﻿Setting,Value
+Model,llama3.1
+Model digest,667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29
+Quantization,Q4_K_M
+Parameters,8.0B
+Runtime,Ollama ollama version is 0.34.0
+Context length (num_ctx),8192
+Temperature,0.1
+Max output tokens (num_predict),2000
+top_p / top_k,None / None
+Decoding seed,42
+Embedding model,sentence-transformers/all-MiniLM-L6-v2
+Embedding dimension,384
+Embedding max_seq_length,256
+Embeddings normalised,False
+Retrieval index,IndexFlatL2
+Distance metric,squared L2 on unnormalised vectors (NOT cosine)
+Corpus size (no aug / aug),8886 / 26658
+Retrieved neighbours (k),1
+Similarity threshold,未設任何相似度門檻（EDC14 明確索取此項）
+Document format,<statement> true_label is <label>
+GPU,"NVIDIA GeForce RTX 2070, 8192 MiB, 576.02"
+Python,3.10.18
